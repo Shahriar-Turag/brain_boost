@@ -3,7 +3,7 @@
 
 @layer components {
 	.swiper {
-		@apply lg:w-[350px] w-[250px] lg:h-[500px] h-[450px];
+		@apply lg:w-[350px] w-[250px]  h-auto;
 	}
 
 	.swiper-slide {

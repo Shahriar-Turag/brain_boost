@@ -8,7 +8,7 @@ import Carousel from './carousel/Carousel';
 const Header = () => {
 	return (
 		<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-between lg:px-28 px-5'>
-			<div className='content pt-10 max-w-4xl'>
+			<div className='content'>
 				<h2 className='text-3xl lg:text-5xl font-semibold'>
 					Build The Skills <br />
 					To Drive Your Career.{' '}
@@ -31,6 +31,7 @@ const Header = () => {
 					alt='header image'
 				/>
 			</div>
+
 			<Carousel />
 		</section>
 	);

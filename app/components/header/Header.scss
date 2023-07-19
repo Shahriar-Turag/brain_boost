@@ -3,17 +3,15 @@
 
 @layer components {
 	section {
-		@apply h-[200vh] lg:h-[85vh];
+		@apply h-[200vh] lg:h-[85vh] overflow-hidden;
 		position: relative;
-		max-width: 100%;
 	}
 
 	section:before {
 		@apply transform lg:scale-x-[1.5] scale-x-[10] w-full;
 		content: '';
 		position: absolute;
-		top: 0;
-		left: 0;
+
 		height: 100%;
 		background-image: linear-gradient(
 			to right,
@@ -30,13 +28,15 @@
 			#efadff,
 			#f396f9
 		);
+
 		border-radius: 0 0 50% 50%/ 0 0 100% 100%;
 	}
 
 	section .content {
-		/* position: relative; */
+		bottom: 100px;
+		position: relative;
 		z-index: 1;
-		/* margin: 0 auto; */
+		margin: 0 auto;
 		max-width: 900px;
 		/* text-align: center; */
 	}
