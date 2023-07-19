@@ -1,0 +1,52 @@
+export const CardData = [
+    {
+        id: 1,
+        img: 'https://rainbowit.net/html/histudy/assets/images/course/course-online-02.jpg',
+        title: 'React',
+        description: 'React is a JavaScript library for building user interfaces. Learn what React is all about on our homepage or in the tutorial.',
+        lessons: '10',
+        students: '100',
+        review: '4.5',
+        reviewCount: '100',
+        price: '1000',
+        oldPrice: '2000',
+    },
+    {
+        id: 2,
+        img: 'https://rainbowit.net/html/histudy/assets/images/course/course-01.jpg',
+        title: 'Nextjs',
+        description: 'Next.js is a React framework that provides a solution for server-side rendering, code-splitting, static exporting, and more.',
+        lessons: '10',
+        students: '100',
+        review: '4.5',
+        reviewCount: '100',
+        price: '1000',
+        oldPrice: '2000',
+
+
+    },
+    {
+        id: 3,
+        img: 'https://rainbowit.net/html/histudy/assets/images/course/course-01.jpg',
+        title: 'Nodejs',
+        description: 'Node.js® is a JavaScript runtime built on Chrome V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.',
+        lessons: '8',
+        students: '60',
+        review: '4',
+        reviewCount: '50',
+        price: '1000',
+        oldPrice: '2000',
+    },
+    {
+        id: 4,
+        img: 'https://rainbowit.net/html/histudy/assets/images/course/course-online-03.jpg',
+        title: 'Expressjs',
+        description: 'Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.',
+        lessons: '10',
+        students: '100',
+        review: '4.5',
+        reviewCount: '100',
+        price: '1000',
+        oldPrice: '2000',
+    }
+]

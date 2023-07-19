@@ -1,0 +1,50 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.swiper {
+		@apply lg:w-[350px] w-[250px] lg:h-[500px] h-[450px];
+	}
+
+	.swiper-slide {
+		top: 80px;
+		border-radius: 18px;
+		background: #fff;
+		.card {
+			@apply flex items-center p-4;
+			.card__image {
+				@apply rounded-lg;
+			}
+			.card__content {
+				@apply text-sm space-y-5;
+				.lesson__info {
+					@apply flex gap-4 items-center mt-2;
+					h3 {
+						@apply flex items-center gap-1;
+					}
+				}
+				.title {
+					@apply text-2xl font-bold;
+					.description {
+						@apply text-sm font-normal;
+					}
+				}
+				.ratings {
+					@apply left-0 flex items-center gap-1 font-bold;
+				}
+				.bottom {
+					@apply flex justify-between items-center;
+					.price {
+						@apply flex items-center gap-2 font-bold text-2xl text-slate-600;
+						.oldPrice {
+							@apply text-sm line-through text-slate-400;
+						}
+					}
+					button {
+						@apply flex items-center gap-1 font-bold hover:text-[#2e2ab6];
+					}
+				}
+			}
+		}
+	}
+}
