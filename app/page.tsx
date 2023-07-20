@@ -1,17 +1,24 @@
+import getCurrentUser from './actions/getCurrentUser';
 import Footer from './components/footer/Footer';
-import Carousel from './components/header/carousel/Carousel';
 import Header from './components/header/Header';
 import LoginModal from './components/modals/LoginModal';
 import RegisterModal from './components/modals/RegisterModal';
-import Navbar from './components/navbar/Navbar';
+import NavbarBottom from './components/navbar/NavbarBottom';
+import NavbarTop from './components/navbar/NavbarTop';
+import ToasterProvider from './providers/ToasterProvider';
 
-export default function Home() {
+export default async function Home() {
+	const currentUser = await getCurrentUser();
+
+	// console.log(currentUser);
 	return (
 		<main>
-			<Navbar />
+			<ToasterProvider />
+			<NavbarTop />
+			<NavbarBottom currentUser={currentUser} />
 			<Header />
-			<LoginModal/>
-			<RegisterModal/>
+			<LoginModal />
+			<RegisterModal />
 			<Footer />
 		</main>
 	);
