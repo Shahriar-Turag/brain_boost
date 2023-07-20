@@ -25,7 +25,18 @@ import { AiOutlineSetting } from 'react-icons/ai';
 import { IoIosClose } from 'react-icons/io';
 import LoginModal from '../modals/LoginModal';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
-const NavbarBottom = () => {
+import useLoginModal from '@/app/hooks/useLoginModal';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
+
+interface NavbarBottomProps {
+	currentUser?: SafeUser | null;
+}
+
+const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
+	console.log(currentUser?.name);
+	const loginModal = useLoginModal();
 	const registerModal = useRegisterModal();
 	const [searchOpen, setSearchOpen] = React.useState(false);
 	const [search, setSearch] = React.useState('');
@@ -249,102 +260,122 @@ const NavbarBottom = () => {
 									<BiMenu size={28} />
 								</label>
 							</div>
-							<div></div>
-							<ul
-								tabIndex={0}
-								className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
-							>
-								<div className='flex items-center gap-8 mb-5'>
-									<div className='avatar'>
-										<div className='w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-											<Image src={profile} alt='avatar' />
+							{currentUser ? (
+								<ul
+									tabIndex={0}
+									className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
+								>
+									<div className='flex items-center gap-8 mb-5'>
+										<div className='avatar'>
+											<div className='w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
+												<Image
+													src={profile}
+													alt='avatar'
+												/>
+											</div>
+										</div>
+										<div className='text-left'>
+											<h2 className='text-2xl font-extrabold'>
+												{currentUser?.name}
+											</h2>
+											<p className='text-[#2e2ab6] font-bold underline cursor-pointer'>
+												View profile
+											</p>
 										</div>
 									</div>
-									<div className='text-left'>
-										<h2 className='text-2xl font-extrabold'>
-											Name
-										</h2>
-										<p className='text-[#2e2ab6] font-bold underline cursor-pointer'>
-											View profile
-										</p>
-									</div>
-								</div>
-								<hr className='my-2' />
-								<li>
-									<div>
-										<BiHome size={20} />
-										<a>My dashboard</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiBookmark size={20} />
-										<a>Bookmark</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiShoppingBag size={20} />
-										<a>Enrolled courses</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiLike size={20} />
-										<a>Wishlist</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiStar size={20} />
-										<a>Reviews</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiMenu size={20} />
-										<a>My quiz attempts</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiHistory size={20} />
-										<a>My order history</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiMessageSquare size={20} />
-										<a>Question and answer</a>
-									</div>
-								</li>
-								<hr className='my-2' />
-								<li>
-									<div>
-										<BiBookOpen size={20} />
-										<a>Getting started</a>
-									</div>
-								</li>
-								<hr className='my-2' />
-								<li>
-									<div>
-										<AiOutlineSetting size={20} />
-										<a>settings</a>
-									</div>
-								</li>
-								<li>
-									<div>
-										<BiLogOut size={20} />
-										<a>Login</a>
-									</div>
-								</li>
-								<li>
-									<div onClick={registerModal.onOpen}>
-										<BiLogOut size={20} />
-										<a>Sign Up</a>
-									</div>
-								</li>
-							</ul>
+									<hr className='my-2' />
+									<li>
+										<div>
+											<BiHome size={20} />
+											<a>My dashboard</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiBookmark size={20} />
+											<a>Bookmark</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiShoppingBag size={20} />
+											<a>Enrolled courses</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiLike size={20} />
+											<a>Wishlist</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiStar size={20} />
+											<a>Reviews</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiMenu size={20} />
+											<a>My quiz attempts</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiHistory size={20} />
+											<a>My order history</a>
+										</div>
+									</li>
+									<li>
+										<div>
+											<BiMessageSquare size={20} />
+											<a>Question and answer</a>
+										</div>
+									</li>
+									<hr className='my-2' />
+									<li>
+										<div>
+											<BiBookOpen size={20} />
+											<a>Getting started</a>
+										</div>
+									</li>
+									<hr className='my-2' />
+									<li>
+										<div>
+											<AiOutlineSetting size={20} />
+											<a>settings</a>
+										</div>
+									</li>
+									<li>
+										<div
+											onClick={() => {
+												signOut();
+											}}
+										>
+											<BiLogOut size={20} />
+											<a>Logout</a>
+										</div>
+									</li>
+								</ul>
+							) : (
+								<ul
+									tabIndex={0}
+									className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
+								>
+									<li>
+										<div onClick={loginModal.onOpen}>
+											<BiLogOut size={20} />
+											<a>Login</a>
+										</div>
+									</li>
+									<li>
+										<div onClick={registerModal.onOpen}>
+											<BiLogOut size={20} />
+											<a>Sign Up</a>
+										</div>
+									</li>
+								</ul>
+							)}
 						</div>
 						<div className=''>
 							<button className='px-4 py-2 text-white font-medium bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg hover:shadow-md transform origin-top hover:-translate-y-2 transition duration-300'>
