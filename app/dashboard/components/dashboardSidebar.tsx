@@ -44,30 +44,111 @@ export default function DashboardSidebar({}: Props) {
       icon: <LuShoppingBag />,
     },
   ];
+  const insArr = [
+    {
+      id: 1,
+      text: "My Courses",
+      icon: <BiHomeAlt size={20} />,
+    },
+    {
+      id: 2,
+      text: "Announcements",
+      icon: <BsPerson size={20} />,
+    },
+    {
+      id: 3,
+      text: "Quiz Attempts",
+      icon: <BiBookOpen size={20} />,
+    },
+    {
+      id: 4,
+      text: "Assignments",
+      icon: <BiBookmark size={20} />,
+    },
+  ];
+  const userArr = [
+    {
+      id: 1,
+      text: "Settings",
+      icon: <BiHomeAlt size={20} />,
+    },
+    {
+      id: 2,
+      text: "Logout",
+      icon: <BsPerson size={20} />,
+    },
+  ];
   return (
     <>
       <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
       <ul className="menu p-8 w-72 mb-24 text-base-content border-4 rounded-lg border-purple-400">
         {/* Sidebar content here */}
-        <p className="px-3 font-semibold mb-4 text-gray-400 uppercase">
-          welcome jon due
-        </p>
-        {navArr.map((item) => (
-          <>
-            <li
-              key={item.id}
-              className="text-gray-500 my-2 font-semibold hover:bg-transparent active:bg-transparent"
-            >
-              <a
-                className={`hover:bg-transparent hover:text-blue-600 ${styles.sideNav__link}`}
+        {/* 1 */}
+        <div className="mt-10">
+          <p className="px-3 font-semibold mb-4 text-gray-400 uppercase">
+            welcome jon due
+          </p>
+          {navArr.map((item) => (
+            <>
+              <li
+                key={item.id}
+                className="text-gray-500 my-2 font-semibold hover:bg-transparent active:bg-transparent"
               >
-                {item.icon}
-                {item.text}
-              </a>
-            </li>
-            <hr className="w-[87%] mx-auto border-1" />
-          </>
-        ))}
+                <a
+                  className={`hover:bg-transparent hover:text-blue-600 ${styles.sideNav__link}`}
+                >
+                  {item.icon}
+                  {item.text}
+                </a>
+              </li>
+              <hr className="w-[87%] mx-auto border-1" />
+            </>
+          ))}
+        </div>
+        {/* 2 */}
+        <div className="mt-10">
+          <p className="px-3 font-semibold mb-4 text-gray-400 uppercase">
+            Instructor
+          </p>
+          {insArr.map((item) => (
+            <>
+              <li
+                key={item.id}
+                className="text-gray-500 my-2 font-semibold hover:bg-transparent active:bg-transparent"
+              >
+                <a
+                  className={`hover:bg-transparent hover:text-blue-600 ${styles.sideNav__link}`}
+                >
+                  {item.icon}
+                  {item.text}
+                </a>
+              </li>
+              <hr className="w-[87%] mx-auto border-1" />
+            </>
+          ))}
+        </div>
+        {/* 3 */}
+        <div className="mt-10">
+          <p className="px-3 font-semibold mb-4 text-gray-400 uppercase">
+            User
+          </p>
+          {userArr.map((item) => (
+            <>
+              <li
+                key={item.id}
+                className="text-gray-500 my-2 font-semibold hover:bg-transparent active:bg-transparent"
+              >
+                <a
+                  className={`hover:bg-transparent hover:text-blue-600 ${styles.sideNav__link}`}
+                >
+                  {item.icon}
+                  {item.text}
+                </a>
+              </li>
+              <hr className="w-[87%] mx-auto border-1" />
+            </>
+          ))}
+        </div>
       </ul>
     </>
   );

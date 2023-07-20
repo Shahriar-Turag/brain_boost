@@ -24,7 +24,9 @@ function DashboardCard({ item }: Props) {
     subTitleColor,
   } = item || {};
   return (
-    <div className={`card w-64 ${bgColor} shadow-xl`}>
+    <div
+      className={`card w-64 ${bgColor} hover:shadow-xl hover:scale-105 transition-all duration-300`}
+    >
       <div className={`card-body items-center`}>
         {/* icon */}
         <div

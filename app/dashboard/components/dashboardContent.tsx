@@ -4,6 +4,7 @@ import { AiOutlineRead, AiOutlineGift, AiOutlineBook } from "react-icons/ai";
 import { FiMonitor } from "react-icons/fi";
 import { SlPeople } from "react-icons/sl";
 import { MdAttachMoney } from "react-icons/md";
+import DashboardCourses from "./dashboardCourses";
 type Props = {};
 
 function DashboardContent({}: Props) {
@@ -64,14 +65,18 @@ function DashboardContent({}: Props) {
     },
   ];
   return (
-    <div className="px-6">
-      <h1 className="text-xl font-bold">Dashboard</h1>
-      <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-14">
-        {/* cards */}
-        {cardArr.map((item) => (
-          <DashboardCard key={item.id} item={item} />
-        ))}
+    <div className="">
+      <div className="p-6 mx-6 shadow-xl">
+        <h1 className="text-xl mb-6 font-bold">Dashboard</h1>
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-14">
+          {/* cards */}
+          {cardArr.map((item) => (
+            <DashboardCard key={item.id} item={item} />
+          ))}
+        </div>
       </div>
+      {/* courses */}
+      <DashboardCourses />
     </div>
   );
 }

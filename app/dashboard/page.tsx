@@ -8,9 +8,9 @@ type Props = {};
 export default function Dashboard({}: Props) {
   return (
     <div>
-      <div>
+      <div className="relative">
         {/* top bg */}
-        <div className="relative">
+        <div className="">
           <GradiantBg />
         </div>
         {/* abs bg with image */}
