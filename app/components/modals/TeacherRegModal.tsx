@@ -1,7 +1,6 @@
 'use client';
 
 import axios from 'axios';
-import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -16,10 +15,9 @@ import Button from '../Button';
 import { signIn } from 'next-auth/react';
 import useTeacherRegisterModal from '@/app/hooks/useTeacherRegisterModal';
 
-const RegisterModal = () => {
-	const registerModal = useRegisterModal();
+const TeacherRegModal = () => {
 	const loginModal = useLoginModal();
-	const teacherRegModal = useTeacherRegisterModal();
+	const teacherModal = useTeacherRegisterModal();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {
@@ -30,23 +28,28 @@ const RegisterModal = () => {
 		defaultValues: {
 			name: '',
 			email: '',
+			phone: '',
+			Skill: '',
+			Biography: '',
 			password: '',
 		},
 	});
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		setIsLoading(true);
 
 		const requestData = {
 			...data,
-			role: 'student',
+			role: 'instructor',
 		};
 
 		axios
 			.post('/api/register', requestData)
 			.then(() => {
-				registerModal.onClose();
+				teacherModal.onClose();
+				toast.success('Account created successfully');
 			})
+
 			.catch((error) => {
 				toast.error('Something went wrong');
 			})
@@ -56,13 +59,13 @@ const RegisterModal = () => {
 	};
 
 	const toggle = useCallback(() => {
-		registerModal.onClose();
+		teacherModal.onClose();
 		loginModal.onOpen();
-	}, [loginModal, registerModal]);
+	}, [loginModal, teacherModal]);
 
 	const bodyContent = (
 		<div className='flex flex-col gap-4'>
-			<Heading title='Welcome to Airbnb' subtitle='Create an account' />
+			<Heading title='Welcome to e-shop' subtitle='Create an account' />
 			<Input
 				id='email'
 				label='Email'
@@ -74,6 +77,30 @@ const RegisterModal = () => {
 			<Input
 				id='name'
 				label='Name'
+				disabled={isLoading}
+				register={register}
+				errors={errors}
+				required
+			/>
+			<Input
+				id='phone'
+				label='Phone Number'
+				disabled={isLoading}
+				register={register}
+				errors={errors}
+				required
+			/>
+			<Input
+				id='skill'
+				label='Skill/Occupation'
+				disabled={isLoading}
+				register={register}
+				errors={errors}
+				required
+			/>
+			<Input
+				id='biography'
+				label='Biography'
 				disabled={isLoading}
 				register={register}
 				errors={errors}
@@ -94,18 +121,6 @@ const RegisterModal = () => {
 	const footerContent = (
 		<div className='flex flex-col gap-4 mt-3'>
 			<hr />
-			<Button
-				outline
-				label='Continue with Google'
-				icon={FcGoogle}
-				onClick={() => signIn('google')}
-			/>
-			<Button
-				outline
-				label='Continue with Github'
-				icon={AiFillGithub}
-				onClick={() => signIn('github')}
-			/>
 
 			<div className='text-neutral-500 text-center mt-4 font-light'>
 				<div className='flex flex-row items-center justify-center gap-2'>
@@ -124,10 +139,10 @@ const RegisterModal = () => {
 	return (
 		<Modal
 			disabled={isLoading}
-			isOpen={registerModal.isOpen}
-			title='Register'
+			isOpen={teacherModal.isOpen}
+			title='Register as a teacher'
 			actionLabel='Continue'
-			onClose={registerModal.onClose}
+			onClose={teacherModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
 			footer={footerContent}
@@ -135,4 +150,4 @@ const RegisterModal = () => {
 	);
 };
 
-export default RegisterModal;
+export default TeacherRegModal;

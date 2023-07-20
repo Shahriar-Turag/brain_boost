@@ -9,6 +9,7 @@ import {
 	BiHistory,
 	BiHome,
 	BiLike,
+	BiLogIn,
 	BiLogOut,
 	BiMenu,
 	BiMessageSquare,
@@ -29,6 +30,8 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import useTeacherModal from '@/app/hooks/useTeacherRegisterModal';
+import Avatar from './Avatar';
 
 interface NavbarBottomProps {
 	currentUser?: SafeUser | null;
@@ -38,6 +41,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 	console.log(currentUser?.name);
 	const loginModal = useLoginModal();
 	const registerModal = useRegisterModal();
+	const teacherRegModal = useTeacherModal();
 	const [searchOpen, setSearchOpen] = React.useState(false);
 	const [search, setSearch] = React.useState('');
 	const handleCloseDrawer = () => {
@@ -263,14 +267,13 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							{currentUser ? (
 								<ul
 									tabIndex={0}
-									className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
+									className='dropdown-content z-[1] menu p-3 shadow-xl bg-base-100 rounded-box w-[300px] right-1 font-bold'
 								>
 									<div className='flex items-center gap-8 mb-5'>
 										<div className='avatar'>
 											<div className='w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-												<Image
-													src={profile}
-													alt='avatar'
+												<Avatar
+													src={currentUser?.image}
 												/>
 											</div>
 										</div>
@@ -360,18 +363,21 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							) : (
 								<ul
 									tabIndex={0}
-									className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
+									className='dropdown-content z-[1] menu p-3 shadow-lg bg-base-100 rounded-box w-[300px] right-1 font-bold'
 								>
 									<li>
 										<div onClick={loginModal.onOpen}>
-											<BiLogOut size={20} />
 											<a>Login</a>
 										</div>
 									</li>
 									<li>
 										<div onClick={registerModal.onOpen}>
-											<BiLogOut size={20} />
 											<a>Sign Up</a>
+										</div>
+									</li>
+									<li>
+										<div onClick={teacherRegModal.onOpen}>
+											<a>Sign Up as an Instructor</a>
 										</div>
 									</li>
 								</ul>
