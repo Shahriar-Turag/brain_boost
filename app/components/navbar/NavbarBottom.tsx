@@ -267,7 +267,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							{currentUser ? (
 								<ul
 									tabIndex={0}
-									className='dropdown-content z-[1] menu p-3 shadow-xl bg-base-100 rounded-box w-[300px] right-1 font-bold'
+									className='dropdown-content z-[1] menu p-6 shadow-xl bg-base-100 rounded-box w-[300px] right-1 font-bold'
 								>
 									<div className='flex items-center gap-8 mb-5'>
 										<div className='avatar'>
