@@ -23,9 +23,11 @@ import profile from '@/public/assets/images/sampleProfile.jpg';
 import { AiOutlineSetting } from 'react-icons/ai';
 
 import { IoIosClose } from 'react-icons/io';
-import LoginModal from '../modals/LoginModal';
+
 import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 const NavbarBottom = () => {
+	const loginModal = useLoginModal();
 	const registerModal = useRegisterModal();
 	const [searchOpen, setSearchOpen] = React.useState(false);
 	const [search, setSearch] = React.useState('');
@@ -252,7 +254,7 @@ const NavbarBottom = () => {
 							<div></div>
 							<ul
 								tabIndex={0}
-								className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
+								className='dropdown-content z-[11] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
 							>
 								<div className='flex items-center gap-8 mb-5'>
 									<div className='avatar'>
@@ -333,7 +335,7 @@ const NavbarBottom = () => {
 									</div>
 								</li>
 								<li>
-									<div>
+									<div onClick={loginModal.onOpen}>
 										<BiLogOut size={20} />
 										<a>Login</a>
 									</div>
