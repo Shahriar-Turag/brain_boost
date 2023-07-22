@@ -1,4 +1,6 @@
 import getCurrentUser from './actions/getCurrentUser';
+import Categories from './components/categories/Categories';
+import EventsContainer from './components/events/EventsContainer';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import LoginModal from './components/modals/LoginModal';
@@ -18,6 +20,8 @@ export default async function Home() {
 			<NavbarTop />
 			<NavbarBottom currentUser={currentUser} />
 			<Header />
+			<Categories />
+			<EventsContainer />
 			<LoginModal />
 			<RegisterModal />
 			<TeacherRegModal />

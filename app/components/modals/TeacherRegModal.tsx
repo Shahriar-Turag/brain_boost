@@ -65,7 +65,10 @@ const TeacherRegModal = () => {
 
 	const bodyContent = (
 		<div className='flex flex-col gap-4'>
-			<Heading title='Welcome to e-shop' subtitle='Create an account' />
+			<Heading
+				title='Welcome to Brain Boost'
+				subtitle='Create an account'
+			/>
 			<Input
 				id='email'
 				label='Email'
@@ -140,7 +143,7 @@ const TeacherRegModal = () => {
 		<Modal
 			disabled={isLoading}
 			isOpen={teacherModal.isOpen}
-			title='Register as a teacher'
+			title='Register as an instructor'
 			actionLabel='Continue'
 			onClose={teacherModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}

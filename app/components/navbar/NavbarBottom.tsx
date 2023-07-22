@@ -9,7 +9,6 @@ import {
 	BiHistory,
 	BiHome,
 	BiLike,
-	BiLogIn,
 	BiLogOut,
 	BiMenu,
 	BiMessageSquare,
@@ -30,8 +29,8 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
-import useTeacherModal from '@/app/hooks/useTeacherRegisterModal';
-import Avatar from './Avatar';
+import Link from 'next/link';
+import useTeacherRegisterModal from '@/app/hooks/useTeacherRegisterModal';
 
 interface NavbarBottomProps {
 	currentUser?: SafeUser | null;
@@ -41,7 +40,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 	console.log(currentUser?.name);
 	const loginModal = useLoginModal();
 	const registerModal = useRegisterModal();
-	const teacherRegModal = useTeacherModal();
+	const teacherModal = useTeacherRegisterModal();
 	const [searchOpen, setSearchOpen] = React.useState(false);
 	const [search, setSearch] = React.useState('');
 	const handleCloseDrawer = () => {
@@ -75,7 +74,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
 						>
 							<li>
-								<a>Home</a>
+								<Link href='/'>Home</Link>
 							</li>
 							<li>
 								<a>Courses</a>
@@ -89,7 +88,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 								</ul>
 							</li>
 							<li>
-								<a>Dashboard</a>
+								<Link href='/dashboard'>Dashboard</Link>
 								<ul className='p-2'>
 									<li>
 										<a>Submenu 1</a>
@@ -107,13 +106,15 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							</li>
 						</ul>
 					</div>
-					<Image
-						className='cursor-pointer'
-						src={logo}
-						alt='logo'
-						width={200}
-						height={200}
-					/>
+					<Link href='/'>
+						<Image
+							className='cursor-pointer'
+							src={logo}
+							alt='logo'
+							width={200}
+							height={200}
+						/>
+					</Link>
 					<div className='lg:flex items-center gap-1 bg-slate-200/70 hover:bg-slate-300 rounded-full px-5 py-3 font-semibold cursor-pointer hidden '>
 						<BiCategory />
 						<a className=''>Category</a>
@@ -122,7 +123,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 				<div className='navbar-center hidden lg:flex'>
 					<ul className='menu menu-horizontal px-1 text-base'>
 						<li>
-							<a>Home</a>
+							<Link href='/'>Home</Link>
 						</li>
 						<li tabIndex={0}>
 							<details>
@@ -140,9 +141,11 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 						<li tabIndex={0}>
 							<details>
 								<summary>Dashboard</summary>
-								<ul className='p-2'>
+								<ul className='p-2 z-10'>
 									<li>
-										<a>Instructor Dashboard</a>
+										<Link href='/dashboard'>
+											Instructor Dashboard
+										</Link>
 									</li>
 									<li>
 										<a>Student dashboard</a>
@@ -267,13 +270,19 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 							{currentUser ? (
 								<ul
 									tabIndex={0}
-									className='dropdown-content z-[1] menu p-6 shadow-xl bg-base-100 rounded-box w-[300px] right-1 font-bold'
+									className='dropdown-content z-[1] menu p-6 shadow-lg bg-base-100 rounded-box w-[300px] right-1'
 								>
 									<div className='flex items-center gap-8 mb-5'>
 										<div className='avatar'>
 											<div className='w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-												<Avatar
-													src={currentUser?.image}
+												<Image
+													src={
+														currentUser?.image ||
+														profile
+													}
+													alt='avatar'
+													width={100}
+													height={100}
 												/>
 											</div>
 										</div>
@@ -290,7 +299,9 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 									<li>
 										<div>
 											<BiHome size={20} />
-											<a>My dashboard</a>
+											<Link href='/dashboard'>
+												My dashboard
+											</Link>
 										</div>
 									</li>
 									<li>
@@ -376,7 +387,7 @@ const NavbarBottom: React.FC<NavbarBottomProps> = ({ currentUser }) => {
 										</div>
 									</li>
 									<li>
-										<div onClick={teacherRegModal.onOpen}>
+										<div onClick={teacherModal.onOpen}>
 											<a>Sign Up as an Instructor</a>
 										</div>
 									</li>

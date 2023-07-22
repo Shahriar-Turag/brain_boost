@@ -1,0 +1,36 @@
+/* styles.module.css */
+.pointedDiv {
+  width: 50%; /* Adjust the width as per your requirements */
+  padding: 10px;
+  padding-left: 33px;
+  position: relative;
+  border-radius: 15px;
+  border: 2px solid #000000; /* Set your desired border color */
+  clip-path: polygon(21px 0%, 100% 0, 100% 100%, 12px 100%, 0px 51%, 12px 0%);
+  background: linear-gradient(
+    to right,
+    rgba(200, 160, 220, 0.7),
+    transparent
+  ); /* Adjust the colors and transparency */
+  /* Adjust the size and angle of the arrow */
+}
+
+/* styles.module.css */
+.button {
+  background-color: #4a8eff; /* Set the initial background color */
+  color: #ffffff; /* Set the text color */
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #c8a0dc; /* Set the background color on hover */
+  transform: translate(
+    5px,
+    -5px
+  ); /* Move the button slightly to the top right on hover */
+}

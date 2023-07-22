@@ -104,7 +104,7 @@ const LoginModal = () => {
 				onClick={toggle}
 			>
 				<div className='flex flex-row items-center justify-center gap-2'>
-					<div>First time using Airbnb?</div>
+					<div>First time using Brain Boost?</div>
 					<div className='text-neutral-800 cursor-pointer hover:underline'>
 						Create an account
 					</div>
